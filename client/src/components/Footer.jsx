@@ -74,7 +74,7 @@ const Footer = () => {
 
       <div className="text-center text-xs text-gray-600 pb-4">
         &copy; {new Date().getFullYear()} COD Fan Site. Not affiliated with
-        Activision. Built by [Your Name].
+        Activision. Built by @adityasriv2317.
       </div>
     </footer>
   );

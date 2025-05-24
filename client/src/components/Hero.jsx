@@ -139,7 +139,7 @@ const Hero = () => {
             className="flex md:ml-4 text-xl font-mono flex-wrap gap-4"
           >
             <motion.button
-              className="bg-green-500 hover:bg-green-600 text-black font-bold py-3 px-6 rounded-md transition-colors"
+              className="bg-green-500 hover:bg-green-600 text-black font-bold py-3 px-6 hover:rounded-md transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -147,7 +147,7 @@ const Hero = () => {
             </motion.button>
 
             <motion.button
-              className="border-2 border-white hover:border-green-500 text-white font-bold py-3 px-6 rounded-md transition-colors"
+              className="border-2 border-white hover:border-green-500 text-white font-bold py-3 px-6 hover:rounded-md transition-all"
               whileHover={{ scale: 1.05, borderColor: "#16a34a" }}
               whileTap={{ scale: 0.95 }}
             >

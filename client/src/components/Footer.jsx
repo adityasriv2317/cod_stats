@@ -2,6 +2,7 @@ import React from "react";
 import { Github, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom"; // optional if using routing
+import TakeSs from "./TakeSs";
 
 const socialLinks = [
   {
@@ -32,6 +33,10 @@ const Footer = () => {
           </p>
         </div>
 
+        <div className="">
+          <TakeSs />
+        </div>
+
         <div>
           <h3 className="text-xl font-semibold mb-2">Developer</h3>
           <div className="flex gap-5">
@@ -55,7 +60,15 @@ const Footer = () => {
 
       <div className="text-center text-xs text-gray-500 px-2 pb-4">
         &copy; {new Date().getFullYear()} COD Stats Site. Not affiliated with
-        Activision. Created by <a className="text-gray-400 hover:text-gray-200" href="https://github.com/adityasriv2317" target="_blank">@adityasriv2317</a>.
+        Activision. Created by{" "}
+        <a
+          className="text-gray-400 hover:text-gray-200"
+          href="https://github.com/adityasriv2317"
+          target="_blank"
+        >
+          @adityasriv2317
+        </a>
+        .
       </div>
     </footer>
   );

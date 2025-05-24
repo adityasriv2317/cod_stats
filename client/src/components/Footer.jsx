@@ -2,6 +2,7 @@ import React from "react";
 import { Github, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom"; // optional if using routing
+import TakeSs from "./TakeSs";
 
 const socialLinks = [
   {
@@ -32,6 +33,10 @@ const Footer = () => {
           </p>
         </div>
 
+         <div className="">
+          <TakeSs />
+        </div>
+        
         <div>
           <h3 className="text-xl font-semibold mb-2">Developer</h3>
           <div className="flex gap-5">

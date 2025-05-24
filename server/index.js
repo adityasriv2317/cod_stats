@@ -3,9 +3,9 @@ const cors = require('cors');
 const puppeteer = require('puppeteer');
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
-const allowedOrigins = ['https://cod-stats-ashy.vercel.app'];
+const allowedOrigins = ['http://localhost:5173', 'https://cod-stats-ashy.vercel.app'];
 
 app.use(cors({
   origin: (origin, callback) => {

@@ -1,12 +1,20 @@
 const express = require('express');
 const cors = require('cors');
-const chromium = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer');
 
 const app = express();
 const port = process.env.PORT;
 
+const allowedOrigins = ['https://cod-stats-ashy.vercel.app'];
+
 app.use(cors({
-  origin: 'https://cod-stats-ashy.vercel.app',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET'],
   credentials: true,
 }));
@@ -19,10 +27,9 @@ app.get('/screenshot', async (req, res) => {
   let browser = null;
 
   try {
-    browser = await chromium.puppeteer.launch({
-      args: chromium.args,
-      executablePath: await chromium.executablePath,
-      headless: chromium.headless,
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
     const page = await browser.newPage();
@@ -34,7 +41,7 @@ app.get('/screenshot', async (req, res) => {
     res.send(screenshotBuffer);
   } catch (error) {
     console.error('Screenshot error:', error);
-    res.status(500).send('Failed to fetch screenshot', error);
+    res.status(500).json({ message: 'Failed to fetch screenshot', error: error.toString() });
   } finally {
     if (browser !== null) await browser.close();
   }

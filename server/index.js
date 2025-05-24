@@ -12,9 +12,14 @@ app.use(cors({
 }));
 
 app.get('/screenshot', async (req, res) => {
-  const url = req.query.url;
+  const { url } = req.query;
+
+  if (!url) return res.status(400).send('Missing URL');
+
+  let browser = null;
+
   try {
-    const browser = await chromium.puppeteer.launch({
+    browser = await chromium.puppeteer.launch({
       args: chromium.args,
       executablePath: await chromium.executablePath,
       headless: chromium.headless,
@@ -23,14 +28,15 @@ app.get('/screenshot', async (req, res) => {
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle0' });
 
-    const screenshot = await page.screenshot({ type: 'png' });
-    await browser.close();
+    const screenshotBuffer = await page.screenshot({ fullPage: true });
 
     res.setHeader('Content-Type', 'image/png');
-    res.send(screenshot);
-  } catch (err) {
-    console.error('Screenshot error:', err);
-    res.status(500).send('Failed to take screenshot', err);
+    res.send(screenshotBuffer);
+  } catch (error) {
+    console.error('Screenshot error:', error);
+    res.status(500).send('Failed to fetch screenshot', error);
+  } finally {
+    if (browser !== null) await browser.close();
   }
 });
 

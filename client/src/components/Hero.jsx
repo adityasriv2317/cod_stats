@@ -52,7 +52,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div id="home" className="relative h-screen overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img src={hero} alt="hero" className="w-full h-full object-cover" />

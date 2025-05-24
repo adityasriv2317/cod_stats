@@ -1,34 +1,60 @@
 import React, { useState, useEffect } from "react";
 import cod from "../assets/cod.png";
 import { motion, AnimatePresence } from "framer-motion";
+// Removed: import { Link } from "react-router-dom";
 
 // Reusable navigation item component
-const NavItem = ({ label, onClick, isMobile = false }) => (
-  <motion.div className="relative">
-    <motion.button
-      className={`text-white cursor-pointer px-4 py-2 rounded-md font-['Orbitron'] ${
-        isMobile ? "text-center text-2xl w-full" : "text-left"
-      }`}
-      whileHover={isMobile ? { x: 5 } : { scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={onClick}
-    >
-      {label}
-    </motion.button>
-    <motion.div
-      className={`absolute bottom-0 left-0 ${
-        isMobile ? "w-[90%]" : "right-0"
-      } h-0.5 bg-green-500`}
-      initial={{ width: 0, opacity: 0 }}
-      whileHover={{
-        width: isMobile ? "90%" : "100%",
-        opacity: 1,
-        transition: { duration: 0.3, ease: "easeOut" },
-      }}
-      exit={{ width: 0, opacity: 0 }}
-    />
-  </motion.div>
-);
+const NavItem = ({ label, onClick, isMobile = false, href }) => {
+  // Changed 'to' to 'href'
+  const handleNavClick = (e) => {
+    if (href && href.startsWith("#")) {
+      e.preventDefault();
+      smoothScrollTo(href.substring(1));
+    }
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  return (
+    <motion.div className="relative">
+      <motion.a
+        href={href}
+        className={`text-white cursor-pointer px-4 py-2 rounded-md font-['Orbitron'] ${
+          isMobile ? "text-center text-2xl w-full block" : "text-left"
+        }`}
+        whileHover={isMobile ? { x: 5 } : { scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={handleNavClick}
+      >
+        {label}
+      </motion.a>
+      <motion.div
+        className={`absolute bottom-0 left-0 ${
+          isMobile ? "w-[90%]" : "right-0"
+        } h-0.5 bg-green-500`}
+        initial={{ width: 0, opacity: 0 }}
+        whileHover={{
+          width: isMobile ? "90%" : "100%",
+          opacity: 1,
+          transition: { duration: 0.3, ease: "easeOut" },
+        }}
+        exit={{ width: 0, opacity: 0 }}
+      />
+    </motion.div>
+  );
+};
+
+// Smooth scroll utility function
+const smoothScrollTo = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +63,11 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
-  const navItems = ["Home", "Games", "Stats"];
+  const navLinks = [
+    { label: "Home", path: "#home" }, // Paths are now IDs
+    { label: "Games", path: "#games" },
+    { label: "Stats", path: "#stats" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +85,9 @@ const Navbar = () => {
   return (
     <div
       className={`fixed ${
-        isVisible ? " bg-gradient-to-b from-30% from-green-950/60 to-transparent" : ""
+        isVisible
+          ? " bg-gradient-to-b from-30% from-green-950/60 to-transparent"
+          : ""
       } top-0 left-0 right-0 z-[11] flex justify-between transition-colors ease-in-out items-center px-4 md:px-16 py-8`}
     >
       <motion.img
@@ -69,13 +101,18 @@ const Navbar = () => {
 
       {/* Desktop Menu */}
       <div className="hidden md:flex gap-4 text-xl">
-        {navItems.map((item) => (
+        {navLinks.map((linkItem) => (
           <motion.div
-            key={item}
+            key={linkItem.label}
             className="relative cursor-pointer"
             whileHover="hover"
           >
-            <NavItem label={item} />
+            <NavItem
+              label={linkItem.label}
+              href={linkItem.path}
+              onClick={closeMenu}
+            />{" "}
+            {/* Pass href and ensure closeMenu is called */}
             <motion.div
               className="absolute bottom-0 left-0 right-0 h-0.5 w-2/3 bg-green-600"
               initial={{ scaleX: 0 }}
@@ -141,12 +178,13 @@ const Navbar = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="flex flex-col gap-4">
-                {navItems.map((item) => (
+                {navLinks.map((linkItem) => (
                   <NavItem
-                    key={item}
-                    label={item}
-                    onClick={closeMenu}
+                    key={linkItem.label}
+                    label={linkItem.label}
+                    onClick={closeMenu} // closeMenu will be called after scrolling
                     isMobile
+                    href={linkItem.path} // Pass href
                   />
                 ))}
               </div>

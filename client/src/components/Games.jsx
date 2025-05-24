@@ -61,7 +61,7 @@ const Games = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 bg-black overflow-hidden text-white">
+    <div id='games' className="min-h-screen py-12 bg-black overflow-hidden text-white">
       <motion.h1 
         className="text-4xl md:text-5xl px-4 md:px-8 font-bold mb-10 text-left text-green-500 font-sans tracking-wider" // Changed to text-left
         initial={{ y: -30, opacity: 0 }}
@@ -80,7 +80,7 @@ const Games = () => {
         {gamesData.map((game, index) => (
           <motion.div 
             key={game.title}
-            className={`bg-gray-950 overflow-hidden shadow-lg hover:shadow-green-500/30 transition-all duration-300 ease-out group rounded-none ${index % 2 === 0 ? 'text-left' : 'text-right'}`}
+            className={`bg-gray-950/70 overflow-hidden shadow-lg hover:shadow-green-500/30 transition-all duration-300 ease-out group rounded-none ${index % 2 === 0 ? 'text-left' : 'text-right'}`}
             variants={itemVariants}
             whileHover={{ y: -8, scale: 1.03 }}
           >

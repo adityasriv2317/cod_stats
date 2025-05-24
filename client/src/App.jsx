@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Games from "./components/Games";
 import Scroll from "./components/Scroll";
+import Stats from "./components/Stats";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <main>
         <Hero />
         <Games />
+        <Stats />
       </main>
       <Scroll />
       <Footer />

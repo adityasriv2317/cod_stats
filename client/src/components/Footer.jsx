@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom"; // optional if using routing
 
@@ -7,17 +7,12 @@ const socialLinks = [
   {
     name: "GitHub",
     icon: <Github className="w-6 h-6" />,
-    url: "https://github.com/yourusername",
-  },
-  {
-    name: "Twitter",
-    icon: <Twitter className="w-6 h-6" />,
-    url: "https://twitter.com/yourhandle",
+    url: "https://github.com/adityasriv2317",
   },
   {
     name: "LinkedIn",
     icon: <Linkedin className="w-6 h-6" />,
-    url: "https://linkedin.com/in/yourprofile",
+    url: "https://linkedin.com/in/aditya2317",
   },
 ];
 
@@ -37,22 +32,8 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Dev Section */}
         <div>
           <h3 className="text-xl font-semibold mb-2">Developer</h3>
-          <ul className="text-gray-400 text-sm space-y-1">
-            <li>
-              {/* Replace with <Link> if using React Router */}
-              <a href="/about" className="hover:text-green-400 transition">
-                About the Developer
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        {/* Social Links */}
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Connect</h3>
           <div className="flex gap-5">
             {socialLinks.map((link) => (
               <motion.a
@@ -72,9 +53,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="text-center text-xs text-gray-600 pb-4">
-        &copy; {new Date().getFullYear()} COD Fan Site. Not affiliated with
-        Activision. Built by @adityasriv2317.
+      <div className="text-center text-xs text-gray-500 px-2 pb-4">
+        &copy; {new Date().getFullYear()} COD Stats Site. Not affiliated with
+        Activision. Created by <a className="text-gray-400 hover:text-gray-200" href="https://github.com/adityasriv2317" target="_blank">@adityasriv2317</a>.
       </div>
     </footer>
   );

@@ -27,7 +27,7 @@ const Scroll = () => {
   return (
     <motion.button
       onClick={scrollToTop}
-      className={`fixed bottom-5 md:bottom-6.5 right-5 bg-green-800 text-white p-3 shadow-lg transition-all ${
+      className={`fixed bottom-12 md:bottom-6.5 right-5 bg-green-800 text-white p-3 shadow-lg transition-all ${
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       whileHover={{ scale: 1.1 }}

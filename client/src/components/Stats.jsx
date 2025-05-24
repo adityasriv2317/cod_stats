@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-// Animated Number Component
 const AnimatedNumber = ({ value }) => {
   const [displayValue, setDisplayValue] = useState(0);
 
@@ -34,7 +33,6 @@ const AnimatedNumber = ({ value }) => {
   );
 };
 
-// Bar Chart Component
 const BarChart = ({ data, title, maxValue }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -55,7 +53,7 @@ const BarChart = ({ data, title, maxValue }) => {
 
   return (
     <motion.div
-      className="bg-black p-6 shadow-lg w-full mb-8 rounded-none"
+      className="bg-black py-6 px-2 shadow-lg w-full mb-8 rounded-none"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -104,7 +102,7 @@ const Stats = () => {
     { label: "Modern Warfare (2019)", value: 75000000 },
     { label: "Warzone", value: 125000000 },
     { label: "Black Ops Cold War", value: 55000000 },
-    { label: "Vanguard", value: 30000000 },
+    { label: "Vanguard", value: 35000000 },
     { label: "Modern Warfare II (2022)", value: 60000000 },
   ];
   const maxPopularity = Math.max(...gamePopularityData.map((d) => d.value));

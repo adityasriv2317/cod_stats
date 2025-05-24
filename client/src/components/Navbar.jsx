@@ -55,7 +55,7 @@ const Navbar = () => {
   return (
     <div
       className={`fixed ${
-        isVisible ? " bg-gradient-to-b from-green-950/60 to-transparent" : ""
+        isVisible ? " bg-gradient-to-b from-30% from-green-950/60 to-transparent" : ""
       } top-0 left-0 right-0 z-[11] flex justify-between transition-colors ease-in-out items-center px-4 md:px-16 py-8`}
     >
       <motion.img

@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Games from "./components/Games";
+import Scroll from "./components/Scroll";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Hero />
         <Games />
       </main>
+      <Scroll />
       <Footer />
     </div>
   );

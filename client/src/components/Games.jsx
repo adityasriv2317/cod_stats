@@ -61,7 +61,7 @@ const Games = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 bg-black text-white">
+    <div className="min-h-screen py-12 bg-black overflow-hidden text-white">
       <motion.h1 
         className="text-4xl md:text-5xl px-4 md:px-8 font-bold mb-10 text-left text-green-500 font-sans tracking-wider" // Changed to text-left
         initial={{ y: -30, opacity: 0 }}
@@ -80,12 +80,12 @@ const Games = () => {
         {gamesData.map((game, index) => (
           <motion.div 
             key={game.title}
-            className={`bg-gray-900 overflow-hidden shadow-lg hover:shadow-green-500/30 transition-all duration-300 ease-out group rounded-none ${index % 2 === 0 ? 'text-left' : 'text-right'}`} // Added rounded-none and conditional text alignment
+            className={`bg-gray-950 overflow-hidden shadow-lg hover:shadow-green-500/30 transition-all duration-300 ease-out group rounded-none ${index % 2 === 0 ? 'text-left' : 'text-right'}`}
             variants={itemVariants}
             whileHover={{ y: -8, scale: 1.03 }}
           >
-            <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}> {/* Flex container for image and content, conditional order */}
-              <div className="relative h-48 md:h-auto md:w-1/2 w-full overflow-hidden"> {/* Adjusted image container for flex layout */}
+            <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+              <div className="relative h-48 md:h-auto md:w-1/2 w-full overflow-hidden">
                 <img 
                   src={gameImages[game.title] || 'https://via.placeholder.com/400x225/1a1a1a/00ff00?text=Game+Art'}
                   alt={`${game.title} cover art`}
@@ -94,16 +94,16 @@ const Games = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
               </div>
               
-              <div className={`p-5 md:w-1/2 flex flex-col justify-between ${index % 2 === 0 ? 'md:items-start' : 'md:items-end'}`}> {/* Adjusted content container for flex layout and alignment */}
+              <div className={`p-5 md:w-1/2 flex flex-col justify-between ${index % 2 === 0 ? 'md:items-start' : 'md:items-end'}`}>
                 <div>
-                  <h2 className={`text-2xl font-bold text-green-400 mb-2 font-['Orbitron'] truncate group-hover:text-green-300 transition-colors ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                  <h2 className={`text-4xl font-bold text-green-400 mb-2 font-sans truncate group-hover:text-green-300 transition-colors ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
                     {game.title}
                   </h2>
-                  <p className={`text-sm text-gray-400 mb-1 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>Release: {game.release}</p>
-                  <p className={`text-sm text-gray-400 mb-3 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>Genre: {game.genre}</p>
+                  <p className={`text-sm text-gray-200 mb-1 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>Release: {game.release}</p>
+                  <p className={`text-sm text-gray-200 mb-3 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>Genre: {game.genre}</p>
                 </div>
                 
-                <div className={`flex items-center mb-4 mt-auto ${index % 2 === 0 ? 'justify-start' : 'justify-end'} w-full`}> {/* Ensure rating aligns with text */} 
+                <div className={`flex items-center mb-4 mt-auto ${index % 2 === 0 ? 'justify-start' : 'justify-end'} w-full`}>
                   <span className={`text-sm bg-green-500 text-black font-bold px-2 py-1 rounded-none ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>{game.rating}</span>
                 </div>
                 

@@ -6,21 +6,21 @@ export default function TakeSs() {
 
   const handleScreenshot = async () => {
     const pageUrl = encodeURIComponent(window.location.href);
-    const url = import.meta.env.VITE_SS_URL;
+    const apiUrl = import.meta.env.VITE_SS_URL; // Renamed to avoid conflict
     setLoading(true);
 
     try {
-      const response = await fetch(`${url}/screenshot?url=${pageUrl}`);
+      const response = await fetch(`${apiUrl}/screenshot?url=${pageUrl}`);
       if (!response.ok) throw new Error("Failed to fetch screenshot");
 
       const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
+      const blobUrl = URL.createObjectURL(blob); // Renamed this variable
 
       const a = document.createElement("a");
-      a.href = url;
+      a.href = blobUrl; // Use the new variable name
       a.download = "screenshot.png";
       a.click();
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(blobUrl); // Use the new variable name
     } catch (error) {
       console.error("Screenshot error:", error);
       alert("Failed to take screenshot.");

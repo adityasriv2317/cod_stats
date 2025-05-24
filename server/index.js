@@ -26,7 +26,7 @@ app.get('/screenshot', async (req, res) => {
     res.send(screenshot);
   } catch (err) {
     console.error('Screenshot error:', err);
-    res.status(500).send('Failed to take screenshot');
+    res.status(500).send('Failed to take screenshot', err);
   }
 });
 

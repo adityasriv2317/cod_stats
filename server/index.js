@@ -5,7 +5,11 @@ const chromium = require('chrome-aws-lambda');
 const app = express();
 const port = process.env.PORT;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://cod-stats-ashy.vercel.app',
+  methods: ['GET'],
+  credentials: true,
+}));
 
 app.get('/screenshot', async (req, res) => {
   const url = req.query.url;
